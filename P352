@@ -1,0 +1,12 @@
+2)
+import tensorflow as tf
+a = tf.constant(40) 
+b = tf.constant(10) 
+c = tf.constant(30) 
+temp = tf.subtract(a,b) 
+t1 = tf.subtract(temp,c) 
+result = tf.multiply(t1,t1) 
+with tf.Session() as sess:
+    writer = tf.summary.FileWriter("/tmp/tboard/output352",sess.graph) 
+    print(sess.run(result)) 
+    writer.close()
