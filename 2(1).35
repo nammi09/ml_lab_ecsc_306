@@ -1,0 +1,32 @@
+import tensorflow as tf
+import matplotlib.pyplot as plt
+
+v1=tf.constant([1,2,3],dtype=tf.float32) #variable v1
+v2=tf.constant([4,5,6],dtype=tf.float32) #variable v2
+
+m1=tf.reduce_mean(v1) #mean of v1
+m2=tf.reduce_mean(v2) #mean of v2
+
+diff=tf.subtract(v1,m1) 
+sq=tf.square(diff)
+var=tf.reduce_sum(sq)
+n=tf.cast(tf.size(v1),tf.float32)
+var1=tf.div(var,n)#variance of v1
+sess=tf.Session()
+print(sess.run(var1))
+
+diff1=tf.subtract(v2,m2)
+pro=tf.multiply(diff,diff1)
+covar=tf.reduce_sum(pro)
+covar1=tf.div(covar,n-1)#covarience of v1 and v2
+print(sess.run(covar1))
+
+sl=tf.div(covar1,var1) #slope 
+print(sess.run(sl))
+
+pro1=tf.multiply(sl,m2)
+con=tf.subtract(m1,pro1) #constant in the equation y=mx+c
+print(sess.run(con))
+
+
+
